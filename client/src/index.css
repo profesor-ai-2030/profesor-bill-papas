@@ -1,0 +1,84 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Dirección: laboratorio editorial tecnológico. Marfil de archivo, azul petróleo y cobre de hallazgo. */
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 5px);
+  --radius-md: calc(var(--radius) - 3px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --radius: 1rem;
+  --background: oklch(0.975 0.012 83);
+  --foreground: oklch(0.24 0.025 204);
+  --card: oklch(0.99 0.008 84);
+  --card-foreground: oklch(0.24 0.025 204);
+  --popover: oklch(0.99 0.008 84);
+  --popover-foreground: oklch(0.24 0.025 204);
+  --primary: oklch(0.31 0.055 204);
+  --primary-foreground: oklch(0.98 0.01 83);
+  --secondary: oklch(0.93 0.025 83);
+  --secondary-foreground: oklch(0.31 0.055 204);
+  --muted: oklch(0.93 0.02 83);
+  --muted-foreground: oklch(0.48 0.03 204);
+  --accent: oklch(0.61 0.13 47);
+  --accent-foreground: oklch(0.99 0.01 83);
+  --border: oklch(0.84 0.025 83);
+  --input: oklch(0.84 0.025 83);
+  --ring: oklch(0.61 0.13 47);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Comfortaa", sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+}
+button, a { font-family: inherit; }
+button:focus-visible, a:focus-visible { outline: 3px solid #C9794B; outline-offset: 4px; }
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .section-label { color: #C9794B; font-size: .7rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+  .paper-grid {
+    background-image: linear-gradient(rgba(31,72,82,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(31,72,82,.055) 1px, transparent 1px);
+    background-size: 34px 34px;
+  }
+  .grain { position: relative; }
+  .grain::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .18; mix-blend-mode: multiply; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.13'/%3E%3C/svg%3E"); }
+}
+
+@keyframes float-orbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes reveal-up { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+.animate-reveal { animation: reveal-up .7s cubic-bezier(.23,1,.32,1) both; }
+.orbit-spin { animation: float-orbit 26s linear infinite; transform-origin: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+}
